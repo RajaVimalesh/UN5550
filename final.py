@@ -10,7 +10,7 @@ from fastf1 import utils
 from fastf1 import plotting
 import matplotlib.pyplot as plt
 
-ff1.Cache.enable_cache('/cache')
+ff1.Cache.enable_cache('UN5550/cache')
 
 st.title("An Interactive Dashboard for Data Visualization on F1 Dataset")
 st.subheader("------------------------")
