@@ -1,4 +1,3 @@
-from tkinter import Image
 import streamlit as st
 import pandas as pd
 import datetime as dt
@@ -11,26 +10,26 @@ from fastf1 import utils
 from fastf1 import plotting
 import matplotlib.pyplot as plt
 
-ff1.Cache.enable_cache('E:/MTU/DATASETS/cache')
+ff1.Cache.enable_cache('cache')
 
 st.title("An Interactive Dashboard for Data Visualization on F1 Dataset")
 st.subheader("------------------------")
 st.write("-------")
 
 #### Data upload ####
-drivers = pd.read_csv('E:/MTU/DATASETS/drivers.csv')
-circuits = pd.read_csv('E:/MTU/DATASETS/circuits.csv',index_col=0, na_values=r'\N')
-constructorResults = pd.read_csv('E:/MTU/DATASETS/constructor_results.csv',index_col=0, na_values=r'\N')
-constructors = pd.read_csv('E:/MTU/DATASETS/constructors.csv',index_col=0, na_values=r'\N')
-constructorStandings = pd.read_csv('E:/MTU/DATASETS/constructor_standings.csv',index_col=0, na_values=r'\N')
-driverStandings = pd.read_csv('E:/MTU/DATASETS/driver_standings.csv',index_col=0, na_values=r'\N')
-lapTime = pd.read_csv('E:/MTU/DATASETS/lap_times.csv')
-pitStops = pd.read_csv('E:/MTU/DATASETS/pit_stops.csv')
-qualifying = pd.read_csv('E:/MTU/DATASETS/qualifying.csv',index_col=0, na_values=r'\N')
-races = pd.read_csv('E:/MTU/DATASETS/races.csv',index_col=0, na_values=r'\N')
-results = pd.read_csv('E:/MTU/DATASETS/results.csv',index_col=0, na_values=r'\N')
-seasons = pd.read_csv('E:/MTU/DATASETS/seasons.csv',index_col=0, na_values=r'\N')
-status = pd.read_csv('E:/MTU/DATASETS/status.csv',index_col=0, na_values=r'\N')
+drivers = pd.read_csv('drivers.csv')
+circuits = pd.read_csv('circuits.csv',index_col=0, na_values=r'\N')
+constructorResults = pd.read_csv('constructor_results.csv',index_col=0, na_values=r'\N')
+constructors = pd.read_csv('constructors.csv',index_col=0, na_values=r'\N')
+constructorStandings = pd.read_csv('constructor_standings.csv',index_col=0, na_values=r'\N')
+driverStandings = pd.read_csv('driver_standings.csv',index_col=0, na_values=r'\N')
+lapTime = pd.read_csv('lap_times.csv')
+pitStops = pd.read_csv('pit_stops.csv')
+qualifying = pd.read_csv('qualifying.csv',index_col=0, na_values=r'\N')
+races = pd.read_csv('races.csv',index_col=0, na_values=r'\N')
+results = pd.read_csv('results.csv',index_col=0, na_values=r'\N')
+seasons = pd.read_csv('seasons.csv',index_col=0, na_values=r'\N')
+status = pd.read_csv('status.csv',index_col=0, na_values=r'\N')
 
 
 ### Data preprocessing ###
@@ -39,15 +38,10 @@ circuits = circuits.rename(columns={'name':'circuitName','location':'circuitLoca
 drivers = drivers.rename(columns={'nationality':'driverNationality','url':'driverUrl'})
 drivers['driverName'] = drivers['forename']+' '+drivers['surname']
 constructors = constructors.rename(columns={'name':'constructorName','nationality':'constructorNationality','url':'constructorUrl'})
-# races.index = races.index.set_names(['raceId','year','round','circuitId','raceName','date','time','raceUrl','a','b'])
-#races = races[[]].reset_index()[['raceId','year','round','circuitId','raceName','date','time','raceUrl']]
-#races.set_index('raceId',inplace=True)
 races['date'] = races['date'].apply(lambda x: dt.datetime.strptime(x,'%Y-%m-%d'))
 pitStops = pitStops.rename(columns={'time':'pitTime'})
 pitStops['seconds'] = pitStops['milliseconds'].apply(lambda x: x/1000)
 results['seconds'] = results['milliseconds'].apply(lambda x: x/1000)
-
-#st.dataframe(results)
 
 ### Define constructor color codes ###
 
