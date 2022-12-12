@@ -180,7 +180,7 @@ if page == "Abu Dhabi 2022 EDA" :
     ))
 
     fig_trottle.update_layout(template='simple_white',
-        yaxis_title = 'Speed Trace',
+        yaxis_title = 'trottle Trace',
         xaxis_title = 'Laps Distance in Meters',
         title='Trottle Trace Between LEC and PER in ABU DHABI 2022 Qualifiying',
         hovermode='x unified'
@@ -209,7 +209,7 @@ if page == "Abu Dhabi 2022 EDA" :
     ))
 
     fig_brake.update_layout(template='simple_white',
-        yaxis_title = 'Speed Trace',
+        yaxis_title = 'Brake Trace',
         xaxis_title = 'Laps Distance in Meters',
         title='Brake Trace Between LEC and PER in ABU DHABI 2022 Qualifiying',
         hovermode='x unified'
